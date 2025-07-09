@@ -1,0 +1,15 @@
+Lab 2: Two PCs in Separate Networks via Router
+
+Devices:
+- Router: Cisco 2901
+- Switches: 2 (2960)
+- PCs: 2
+
+IP Configuration:
+- PC0: 192.168.10.10 /24, GW: 192.168.10.1
+- PC1: 192.168.20.10 /24, GW: 192.168.20.1
+- Router G0/0: 192.168.10.1 /24
+- Router G0/1: 192.168.20.1 /24
+
+Routing: Static routing via router interfaces
+Test: Ping from PC0 to PC1 = ✅ Successful
