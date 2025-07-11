@@ -1,20 +1,20 @@
 Lab 4 – Static Routing: Single Router with Multiple Networks
 
-📌 Objective:
+Objective:
 Configure a router to enable communication between three directly connected subnets using static routing principles.
 
-🧱 Topology:
+Topology:
 - 1x Cisco 2811 Router
 - 3x PCs (one per subnet)
 - 3x Fast Ethernet interfaces (one per subnet)
 - Copper straight-through cables
 
-🌐 IP Scheme (using /24):
+IP Scheme (using /24):
 PC0 - 192.168.10.2 / Gateway: 192.168.10.1  
 PC1 - 192.168.20.2 / Gateway: 192.168.20.1  
 PC2 - 192.168.30.2 / Gateway: 192.168.30.1  
 
-🛠 Router Configuration:
+Router Configuration:
 interface fa0/0  
  ip address 192.168.10.1 255.255.255.0  
  no shutdown  
@@ -27,7 +27,7 @@ interface fa1/0
  ip address 192.168.30.1 255.255.255.0  
  no shutdown  
 
-✅ Results:
+Results:
 - All PCs can successfully ping each other.
 - Static routes not required as all subnets are directly connected.
 - Issue resolved by configuring correct default gateway on PCs.
