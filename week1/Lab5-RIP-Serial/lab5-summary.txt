@@ -1,0 +1,10 @@
+Objective
+Establish connectivity between two remote networks using Serial communication between routers and configure RIP version 2 to enable dynamic routing.
+
+Topology
+2 Routers (Cisco 2811)
+2 Switches (2960)
+4 PCs (2 per LAN side)
+Serial connection between routers
+Ethernet connections between routers, switches, and PCs
+
