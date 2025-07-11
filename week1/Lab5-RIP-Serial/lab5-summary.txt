@@ -1,10 +1,55 @@
 Objective
 Establish connectivity between two remote networks using Serial communication between routers and configure RIP version 2 to enable dynamic routing.
 
-Topology
-2 Routers (Cisco 2811)
-2 Switches (2960)
-4 PCs (2 per LAN side)
-Serial connection between routers
-Ethernet connections between routers, switches, and PCs
+Topology:
+- 2 Routers (Cisco 2811)
+- 2 Switches (2960)
+- 4 PCs (2 per LAN side)
+- Serial connection between routers
+- Ethernet connections between routers, switches, and PCs
+
+IP Scheme:
+PC0 - 192.168.1.2 / Gateway: 192.168.1.1
+PC1 - 192.168.1.3 / Gateway: 192.168.1.1
+PC2 - 192.168.2.2 / Gateway: 192.168.2.1
+PC3 - 192.168.2.3 / Gateway: 192.168.2.1
+Router0: Fa0/0 - 192.168.1.1 | Serial0/3/0 - 10.0.0.1
+Router1: Fa0/0 - 192.168.2.1 | Serial0/3/0 - 10.0.0.2
+
+Router Configuration:
+Router0:
+interface fa0/0  
+ ip address 192.168.1.1 255.255.255.0  
+ no shutdown  
+interface serial0/3/0  
+ ip address 10.0.0.1 255.255.255.252  
+ clock rate 64000  
+ no shutdown  
+router rip  
+ version 2  
+ no auto-summary  
+ network 192.168.1.0  
+ network 10.0.0.0  
+
+Router1:
+interface fa0/0  
+ ip address 192.168.2.1 255.255.255.0  
+ no shutdown  
+interface serial0/3/0  
+ ip address 10.0.0.2 255.255.255.252  
+ no shutdown  
+router rip  
+ version 2  
+ no auto-summary  
+ network 192.168.2.0  
+ network 10.0.0.0  
+
+Results:
+
+- All PCs across both LANs can successfully ping each other.
+- RIP v2 dynamically advertises routes between both networks.
+- Issue resolved by enabling interfaces, setting clock rate on DCE side, and configuring correct RIP networks and gateways.
+
+
+
 
