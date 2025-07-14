@@ -1,0 +1,48 @@
+Objective:
+Establish static routing between two routers connected via a serial link and enable communication between their respective LANs.
+
+Topology:
+2x Cisco 2811 Routers (Router0, Router1)
+2x Cisco 2960 Switches
+4x PCs (2 per LAN segment)
+1x Serial DCE/DTE connection
+Copper straight-through cables for LAN
+Serial DCE cable for router-to-router connection
+
+IP Scheme:
+Router0 LAN:
+PC0: 192.168.0.2 / Gateway: 192.168.0.1
+PC1: 192.168.0.3 / Gateway: 192.168.0.1
+
+Router1 LAN:
+PC2: 192.168.1.2 / Gateway: 192.168.1.1
+PC3: 192.168.1.3 / Gateway: 192.168.1.1
+Serial Link (using /30):
+
+Router0 Se0/3/0: 10.10.10.1
+Router1 Se0/3/0: 10.10.10.2
+
+Router Configuration (Router0):
+interface fa0/0
+ ip address 192.168.0.1 255.255.255.0
+ no shutdown
+interface se0/3/0
+ ip address 10.10.10.1 255.255.255.252
+ clock rate 64000
+ no shutdown
+ip route 192.168.1.0 255.255.255.0 10.10.10.2
+
+Router Configuration (Router1):
+interface fa0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+interface se0/3/0
+ ip address 10.10.10.2 255.255.255.252
+ no shutdown
+ip route 192.168.0.0 255.255.255.0 10.10.10.1
+
+Results:
+Static routes correctly configured on both routers.
+All PCs on both LANs can successfully ping each other.
+Serial communication works using a /30 subnet for efficient IP usage.
+Problem-solving included ensuring correct gateway and clock rate on DCE side.
