@@ -1,0 +1,62 @@
+Objective:
+Demonstrate VLAN segmentation across two switches using trunking. Verify communication between devices in the same VLAN located on different switches.
+
+Topology:
+
+2x Cisco 2960 Switches
+
+4x PCs (2 in VLAN 10, 2 in VLAN 20)
+
+Switch-to-Switch Trunk Link using Fast Ethernet
+
+Copper straight-through cables from PCs to switches
+
+VLAN Configuration:
+
+VLAN 10: PC0, PC2 (brown group)
+
+VLAN 20: PC1, PC3 (red group)
+
+IP Scheme (per VLAN, using /24):
+
+VLAN 10:
+
+PC0 – 192.168.10.2
+
+PC2 – 192.168.10.3
+
+VLAN 20:
+
+PC1 – 192.168.20.2
+
+PC3 – 192.168.20.3
+
+Switch Configuration (example for VLAN 10 & trunk):
+
+vlan 10
+ name HR
+vlan 20
+ name Sales
+
+interface fa0/1
+ switchport mode access
+ switchport access vlan 10
+
+interface fa0/2
+ switchport mode access
+ switchport access vlan 20
+
+interface fa0/3
+ switchport mode trunk
+Results:
+
+Devices in VLAN 10 can communicate (PC0 ↔ PC2)
+
+Devices in VLAN 20 can communicate (PC1 ↔ PC3)
+
+Devices from different VLANs cannot communicate (as expected)
+
+Trunking successfully enables inter-switch communication for same-VLAN traffic.
+
+
+
