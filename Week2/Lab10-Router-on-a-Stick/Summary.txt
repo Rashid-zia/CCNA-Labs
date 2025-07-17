@@ -1,0 +1,64 @@
+Objective:
+Enable communication between multiple VLANs using a single router interface with sub-interfaces configured for each VLAN (Router-on-a-Stick method).
+
+Topology:
+
+1x Cisco 2811 Router
+
+1x Cisco 2960 Switch
+
+3x PCs in separate VLANs
+
+Copper straight-through cables for PCs
+
+Trunk link from switch to router
+
+Switch Configuration:
+
+vlan 10
+ name HR
+vlan 20
+ name IT
+vlan 30
+ name Sales
+
+interface fa0/1
+ switchport mode access
+ switchport access vlan 10
+
+interface fa0/2
+ switchport mode access
+ switchport access vlan 20
+
+interface fa0/3
+ switchport mode access
+ switchport access vlan 30
+
+interface fa0/4
+ switchport mode trunk
+
+Router Configuration (Router-on-a-Stick):
+
+interface fa0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface fa0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface fa0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+
+interface fa0/0
+ no shutdown
+
+Results:
+
+All PCs in different VLANs can ping each other.
+
+Inter-VLAN routing successfully enabled via sub-interfaces.
+
+Router-on-a-Stick topology verified using trunk link.
+
