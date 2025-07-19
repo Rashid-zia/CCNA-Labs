@@ -1,0 +1,100 @@
+Objective:
+Configure a DHCP server to assign IP addresses to multiple VLANs using router-on-a-stick configuration for inter-VLAN routing.
+
+Topology:
+
+1x Cisco 2811 Router
+
+1x 2960 Switch
+
+1x DHCP Server
+
+3x PCs (one per VLAN)
+
+Copper straight-through cables
+
+VLAN Configuration:
+
+VLAN 10: PC0 (Fa0/1-5)
+
+VLAN 20: PC1 (Fa0/6-10)
+
+VLAN 30: PC2 (Fa0/11-15)
+
+Trunk port: Switch Fa0/22 - Router Fa0/0
+
+Router Configuration:
+
+interface fa0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface fa0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface fa0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+
+Switch Configuration:
+
+interface range fa0/1-5
+ switchport mode access
+ switchport access vlan 10
+
+interface fa0/6-10
+ switchport mode access
+ switchport access vlan 20
+
+interface fa0/11-15
+ switchport mode access
+ switchport access vlan 30
+
+interface fa0/22
+ switchport mode trunk
+
+DHCP Server Configuration (Server0):
+Three pools were configured under Services > DHCP:
+
+Pool for VLAN 10:
+
+Default Gateway: 192.168.10.1
+
+Start IP: 192.168.10.10
+
+Subnet Mask: 255.255.255.0
+
+Pool for VLAN 20:
+
+Default Gateway: 192.168.20.1
+
+Start IP: 192.168.20.10
+
+Subnet Mask: 255.255.255.0
+
+Pool for VLAN 30:
+
+Default Gateway: 192.168.30.1
+
+Start IP: 192.168.30.10
+
+Subnet Mask: 255.255.255.0
+
+Results:
+
+PCs successfully received IP addresses from the DHCP server.
+
+Verified inter-VLAN routing through router subinterfaces.
+
+All PCs could ping their default gateway and each other.
+
+Trunk port was verified using show interface trunk.
+
+Router:
+
+Router(config)#int fa0/0.20
+ip helper-address 192.168.10.2 (server-ip)
+
+int fa0/0.30
+ip helper-address 192.168.10.2 (server-ip)
