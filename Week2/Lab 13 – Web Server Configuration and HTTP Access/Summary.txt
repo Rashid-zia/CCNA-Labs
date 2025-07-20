@@ -1,0 +1,70 @@
+Objective:
+Configure a web server and verify that client PCs can access it using both IP address and domain name via a browser.
+
+Topology:
+
+1x Cisco 2811 Router
+
+1x 2960 Switch
+
+1x Server (Web + DNS)
+
+2x PCs
+
+Copper straight-through cables
+
+IP Scheme (/24 subnet):
+
+Server: 192.168.10.2
+
+PC1: 192.168.10.11
+
+PC2: 192.168.10.12
+
+Default Gateway (Router): 192.168.10.1
+
+DNS Server (on Web Server): 192.168.10.10
+
+Router Configuration:
+
+interface fa0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+Server Configuration:
+
+IP Address: 192.168.10.2
+
+Gateway: 192.168.10.1
+
+Services Enabled:
+
+HTTP: ON, with default index page
+
+DNS: ON (optional)
+
+A Record:
+
+Name: www.ccnaweb.local
+
+Address: 192.168.10.2
+
+Type: A Record
+
+PC Configuration:
+
+Static IPs assigned
+
+Default gateway: 192.168.10.1
+
+DNS: 192.168.10.2 (for domain testing)
+
+Results:
+
+PCs successfully accessed the web page hosted on the server using both:
+
+IP: http://192.168.10.2
+
+Domain: http://www.ccnaweb.local
+
+Confirmed proper configuration of HTTP and DNS services on the server.
