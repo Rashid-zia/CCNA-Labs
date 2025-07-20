@@ -1,0 +1,72 @@
+Objective:
+Configure an FTP server and allow client PCs to connect, authenticate, and transfer files using FTP protocol.
+
+Topology:
+
+1x Cisco 2811 Router
+
+1x 2960 Switch
+
+1x Server (FTP)
+
+1x PC
+
+Copper straight-through cables
+
+IP Scheme (using /24 subnet):
+
+FTP Server: 192.168.10.2
+
+PC: 192.168.10.10
+
+Default Gateway (Router): 192.168.10.1
+
+Router Configuration:
+
+interface fa0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+Server Configuration:
+
+IP Address: 192.168.10.2
+
+Gateway: 192.168.10.1
+
+FTP Service:
+
+Status: ON
+
+User Account Created:
+
+Username: ccna
+
+Password: cisco123
+
+Permissions: Read/Write
+
+PC Configuration:
+
+IP Address: 192.168.10.10
+
+Subnet Mask: 255.255.255.0
+
+Gateway: 192.168.10.1
+
+Testing from PC:
+
+Connected to FTP server using ftp 192.168.10.2
+
+Logged in with username ccna and password cisco123
+
+Verified file listing using dir command
+
+Successfully tested upload/download operations
+
+Results:
+
+PC successfully authenticated and communicated with the FTP server.
+
+File transfers via FTP were tested and functional.
+
+Full end-to-end FTP service was validated.
