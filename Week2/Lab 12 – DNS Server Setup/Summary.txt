@@ -1,0 +1,63 @@
+Objective:
+Configure a DNS server to resolve domain names to IP addresses and verify that client PCs can successfully use domain names for communication.
+
+Topology:
+
+1x Cisco 2811 Router
+
+1x 2960 Switch
+
+1x DNS Server
+
+3x PCs
+
+Copper straight-through cables
+
+IP Scheme (using /24 subnet):
+
+PC0: 192.168.10.11
+
+PC1: 192.168.10.12
+
+PC2: 192.168.10.13
+
+DNS Server: 192.168.10.2
+
+Default Gateway (Router): 192.168.10.1
+
+Router Configuration:
+
+interface fa0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+Switch Configuration:
+All devices were connected to the switch and remained in the default VLAN 1.
+
+DNS Server Configuration (under Services > DNS):
+
+DNS Service: ON
+
+Added Record:
+
+Name: www.ccna.local
+
+Type: A Record
+
+Address: 192.168.10.10
+
+PC Configuration:
+
+Each PC was manually assigned an IP address in the same subnet.
+
+DNS Server was set to 192.168.10.2
+
+Default Gateway set to 192.168.10.1
+
+Results:
+
+All PCs successfully resolved www.ccna.local to 192.168.10.10 using the DNS server.
+
+Ping to domain name worked once connectivity was ensured.
+
+Verified correct DNS mapping and end-to-end domain-based communication.
