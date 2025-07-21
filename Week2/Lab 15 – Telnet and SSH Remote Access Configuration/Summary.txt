@@ -1,0 +1,64 @@
+Objective:
+Configure Telnet and SSH access on a router to allow secure and remote management from a PC.
+
+Topology:
+
+1x Cisco 2811 Router
+
+1x 2960 Switch
+
+1x PC
+
+Copper straight-through cables
+
+IP Scheme (using /24 subnet):
+
+Router: 192.168.10.1
+
+PC: 192.168.10.10
+
+Subnet Mask: 255.255.255.0
+
+Default Gateway (PC): 192.168.10.1
+
+Router Configuration:
+
+ostname R1
+ip domain-name ccna.local
+username admin privilege 15 secret cisco123
+
+interface fa0/0
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+
+crypto key generate rsa
+1024
+
+PC Configuration:
+
+IP: 192.168.10.10
+
+Subnet Mask: 255.255.255.0
+
+Default Gateway: 192.168.10.1
+
+Testing:
+
+Telnet: telnet 192.168.10.1
+
+SSH: ssh -l admin 192.168.10.1
+
+Successfully logged in using username admin and password cisco123
+
+Results:
+
+Verified remote login via both Telnet and SSH
+
+SSH preferred for secure remote access
+
+VTY lines protected with local user authentication and timeout configuration
