@@ -1,0 +1,28 @@
+Summary:
+In this lab, I configured a multi-VLAN network with DHCP and DNS services across two routers (HQ and Branch), simulating an enterprise-level network topology. The key objectives were to automate IP address assignment, enable name resolution, and ensure inter-VLAN communication.
+
+Key Tasks Performed:
+
+Created and assigned multiple VLANs (VLAN 10, 20, 30 on HQ; VLAN 40, 50, 60 on Branch).
+
+Configured DHCP pools on the HQ router to dynamically assign IPs to VLAN interfaces.
+
+Used router-on-a-stick to enable Inter-VLAN Routing using sub-interfaces.
+
+Established serial communication between HQ and Branch routers using 10.0.0.1/24 and 10.0.0.2/24.
+
+Set up a DNS server (192.168.10.10) and verified name resolution from client PCs.
+
+Ensured all PCs in different VLANs successfully obtained IP addresses via DHCP and could ping each other and resolve DNS names.
+
+Skills Practiced:
+
+DHCP configuration across VLANs
+
+Inter-VLAN routing using sub-interfaces
+
+DNS client-server communication
+
+Multi-router setup with routing protocols
+
+Troubleshooting Layer 2/Layer 3 issues
