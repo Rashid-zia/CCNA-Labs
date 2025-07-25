@@ -1,0 +1,44 @@
+Objective:
+To demonstrate OSPF (Open Shortest Path First) routing protocol in a network topology with multiple routers and end devices.
+
+Topology Overview:
+
+Routers: 3 (R1, R2, R3)
+
+Switches: Connected to each router
+
+End Devices: 6 PCs (2 per router's network)
+
+Routing Protocol: Multiple areas OSPF
+
+Key Configurations:
+
+Each router has a unique directly connected network.
+
+OSPF is configured in area mode (area 1) in router o.
+
+OSPF is configured in area mode (area 2) in router 2.
+
+OSPF is configured in area mode (area 0) in between other two routers.
+
+Network statements were used to advertise connected networks into OSPF.
+
+Default routes are propagated as needed.
+
+PCs are configured with IP addresses in the correct subnets and default gateways.
+
+Verification:
+
+Used ping and traceroute commands to verify inter-network communication.
+
+Checked OSPF neighbor relationships using show ip ospf neighbor.
+
+Verified OSPF routing table using show ip route ospf.
+
+Learning Outcomes:
+
+Understanding how OSPF dynamically shares routes between routers.
+
+Verifying routing convergence and reachability across a multi-router network.
+
+Understanding the importance of subnet planning and router interfaces.
