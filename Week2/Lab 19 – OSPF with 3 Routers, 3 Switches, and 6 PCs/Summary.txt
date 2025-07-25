@@ -1,0 +1,67 @@
+Objective:
+
+To build and verify an OSPF (Open Shortest Path First) network across multiple routers and LANs, demonstrating dynamic routing, subnetting, and end-to-end connectivity.
+
+ Topology Overview:
+
+Routers: 3 (R1, R2, R3)
+
+Switches: 3 (One switch per router)
+
+PCs: 6 total (2 PCs connected to each switch/router)
+
+Connections:
+
+Each router is connected to one switch.
+
+Each switch has 2 PCs connected to it.
+
+Routers are interconnected in a triangle topology using serial links.
+
+ Configuration Details:
+
+IP Addressing:
+
+Each LAN segment (switch-PC subnet) is assigned a unique subnet.
+
+Serial links between routers are also configured with /30 subnets.
+
+OSPF Configuration:
+
+Area OSPF (area 0) used between in router 1.
+
+Area OSPF (area 1) used in router 0.
+
+Area OSPF (area 2) used in router 2.
+
+Verification:
+
+PC-to-PC Connectivity:
+
+PCs in different subnets can successfully ping each other through OSPF.
+
+Routing Table Checks:
+
+show ip route ospf confirms dynamic route learning.
+
+OSPF Neighbor Status:
+
+show ip ospf neighbor confirms adjacency establishment between routers.
+
+Ping & Traceroute:
+
+Tools used to validate path and latency between endpoints.
+
+ Learning Outcomes:
+
+Practical experience configuring OSPF on a multi-router network.
+
+Reinforced understanding of routing tables, network masks, and inter-router communication.
+
+Demonstrated how dynamic routing protocols enable scalable network design.
+
+
+
+network statements include both LAN and WAN interfaces.
+
+Verified OSPF adjacency and route propagation between routers.
