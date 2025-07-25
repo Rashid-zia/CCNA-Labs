@@ -1,0 +1,38 @@
+Objective:
+To design and implement an OSPF (Open Shortest Path First) routing protocol over a network topology consisting of 3 routers connected in a triangular structure with 1 PC connected to each router.
+
+Network Topology:
+Routers: 3 Cisco routers (R1, R2, R3)
+
+PCs: 3 end devices (PC1, PC2, PC3), each connected to one router
+
+Links: Serial or FastEthernet connections between routers
+
+IP Scheme: Different subnets for each router-PC segment and inter-router links
+
+Key Configurations:
+IP Addressing:
+
+Each interface was assigned a unique IP in a /24 subnet.
+
+PCs configured with appropriate default gateways.
+
+Routing Protocol:
+
+OSPF configured with:
+
+router ospf 1
+
+network <IP> <wildcard> area 0 
+
+network <IP> <wildcard> area 1 
+
+network <IP> <wildcard> area 2
+
+All routers placed in Area 0.
+
+Connectivity Testing:
+
+Ping tests performed from each PC to all others.
+
+Routing tables verified using show ip route.
